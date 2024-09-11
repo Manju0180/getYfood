@@ -1,0 +1,19 @@
+<div class="container" *ngIf="orders.length > 0; else noOrders">
+    <h1>Your Orders</h1>
+    <div class="order-list">
+      <div class="order-item" *ngFor="let order of orders">
+        <h3>Order #{{order.id}}</h3>
+        <p><strong>Date:</strong> {{order.createdAt | date:'medium'}}</p>
+        <p><strong>Status:</strong> {{order.status}}</p>
+        <p><strong>Total:</strong> ${{order.totalPrice}}</p>
+        <button [routerLink]="['/track', order.id]">Track Order</button>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noOrders>
+    <div class="no-orders">
+      <h2>You haven't placed any orders yet.</h2>
+    </div>
+  </ng-template>
+  
